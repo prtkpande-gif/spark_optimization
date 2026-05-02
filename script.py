@@ -46,6 +46,20 @@ orders_df = spark.range(0, current_config["scale"] // 10) \
 products_data = [(i, f"Product_{i}", "Electronics" if i % 2 == 0 else "Apparel") for i in range(5001)]
 products_df = spark.createDataFrame(products_data, ["product_id", "product_name", "category"])
 
+# --- THE PRINCIPAL'S AUDIT COMMANDS ---
+
+# 1. Execution Plan Audit
+# This will print the Physical Plan to your console
+clickstream_df.explain(True) 
+
+# 2. Schema Verification
+# Ensures data types are correct (e.g., product_id is an Integer)
+clickstream_df.printSchema() 
+
+# 3. Data Preview (The Action that triggers generation)
+# This will materialize a small sample in your console
+clickstream_df.show(5)
+
 # --- OPTIMIZED WRITE (FinOps & Performance) ---
 # Principle: Manage partitioning to avoid the "Small File Problem" [cite: 71, 167, 278]
 clickstream_df.write.mode("overwrite").parquet(f"{current_config['path']}/clicks")
