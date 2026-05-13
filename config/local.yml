@@ -1,0 +1,27 @@
+# configs/local.yml
+# Settings for local Docker environment
+
+environment: local
+
+kafka:
+  bootstrap_servers: "localhost:9092"
+  topic: "product_events"
+  num_partitions: 3
+  replication_factor: 1
+
+storage:
+  bronze: "s3a://bronze/events/"
+  silver: "s3a://silver/events/"
+  gold:   "s3a://gold/metrics/"
+  checkpoints: "s3a://checkpoints/"
+  endpoint: "http://localhost:9000"
+  access_key: "minioadmin"
+  secret_key: "minioadmin"
+
+producer:
+  total_events: 10_000        # local smoke test volume
+  batch_size: 500
+  skew_ratio: 0.80            # 80% events go to viral products
+  viral_product_count: 10     # number of "viral" product IDs
+  total_products: 100
+  total_users: 500
