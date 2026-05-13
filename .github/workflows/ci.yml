@@ -44,7 +44,7 @@ jobs:
           MINIO_ACCESS_KEY: minioadmin
           MINIO_SECRET_KEY: minioadmin
           LAKEHOUSE_ENV: local
-        run: pytest test/ -v --tb=short
+        run: pytest tests/ -v --tb=short
 
 
 
