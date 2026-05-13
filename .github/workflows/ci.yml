@@ -40,6 +40,10 @@ jobs:
           chispa==0.9.2
 
       - name: Run tests
+        env:
+          MINIO_ACCESS_KEY: minioadmin
+          MINIO_SECRET_KEY: minioadmin
+          LAKEHOUSE_ENV: local
         run: pytest test/ -v --tb=short
 
 

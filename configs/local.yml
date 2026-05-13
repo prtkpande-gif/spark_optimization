@@ -15,8 +15,8 @@ storage:
   gold:   "s3a://gold/metrics/"
   checkpoints: "s3a://checkpoints/"
   endpoint: "http://localhost:9000"
-  access_key: "minioadmin"
-  secret_key: "minioadmin"
+  access_key: "${MINIO_ACCESS_KEY}"
+  secret_key: "${MINIO_SECRET_KEY}"
 
 producer:
   total_events: 10_000        # local smoke test volume
